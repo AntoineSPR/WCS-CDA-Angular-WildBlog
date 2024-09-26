@@ -1,0 +1,14 @@
+<div class="calculator">
+  <h2>Calculatrice</h2>
+  <div class="numbers">
+    <button (click)="getNumber1()">Générer un 1er nombre</button>
+    <button (click)="getNumber2()">Générer un 2e nombre</button>
+  </div>
+  <div class="operators">
+    <button (click)="setOperator('+'); calculate()">+</button>
+    <button (click)="setOperator('-'); calculate()">-</button>
+    <button (click)="setOperator('x'); calculate()">x</button>
+    <button (click)="setOperator('÷'); calculate()">÷</button>
+  </div>
+  <p>{{nb1}} {{operator}} {{nb2}} = {{result}}</p>
+</div>
