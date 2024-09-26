@@ -10,5 +10,15 @@
     <button (click)="setOperator('x'); calculate()">x</button>
     <button (click)="setOperator('÷'); calculate()">÷</button>
   </div>
-  <p>{{nb1}} {{operator}} {{nb2}} = {{result}}</p>
+  <p>
+    @if(nb1 > 0){
+        {{nb1}}
+     } {{operator}} 
+     @if(nb2 > 0){
+        {{nb2}}
+      }
+      @if(result !== 0) {
+        = {{result}}
+      }
+    </p>
 </div>

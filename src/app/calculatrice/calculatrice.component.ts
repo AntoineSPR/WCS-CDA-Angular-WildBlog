@@ -13,6 +13,28 @@ export class CalculatriceComponent {
   result: number = 0;
   operator: string = '';
 
+  randomNumber(): number {
+    const generatedNumber: number = Math.floor(Math.random() * 100);
+    if (generatedNumber == 0) {
+      return this.randomNumber();
+    }
+    return generatedNumber;
+  }
+
+  getNumber1(): number {
+    this.nb1 = this.randomNumber();
+    return this.nb1;
+  }
+
+  getNumber2(): number {
+    this.nb2 = this.randomNumber();
+    return this.nb2;
+  }
+
+  setOperator(operator: string) {
+    this.operator = operator;
+  }
+
   calculate() {
     switch(this.operator){
       case '+':
@@ -25,24 +47,8 @@ export class CalculatriceComponent {
       this.result = this.nb1 * this.nb2;
       break;
     case '÷':
-      this.result = this.nb2 !== 0 ? this.nb1 / this.nb2 : Infinity;
+      this.result = this.nb1 / this.nb2;
       break;
     }
-  }
-
-  randomNumber(): number {
-    return Math.floor(Math.random() * 100);
-  }
-  getNumber1(): number {
-    this.nb1 = this.randomNumber();
-    console.log(this.nb1);
-    return this.nb1;
-  }
-  getNumber2(): number {
-    this.nb2 = this.randomNumber();
-    return this.nb2;
-  }
-  setOperator(operator: string) {
-    this.operator = operator;
   }
 }
