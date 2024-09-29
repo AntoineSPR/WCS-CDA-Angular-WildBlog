@@ -1,7 +1,20 @@
 <div class="card">
   <div class="card-contents">
-    <h2>Adventure Time</h2>
-    <p>Come on, grab your friend, we'll go to very distant lands!</p>
+    <h2>{{this.article.title}}</h2>
+    <p>{{this.article.content}}</p>
+    <p class="author">By {{this.article.author}}</p>
   </div>
-  <img src="assets/JakeTheDog.jpg" alt="Jake. He's a dog.">
+
+  <img [src]="this.article.image" alt={{this.article.imageAlt}}>
+
+  <div class="addendum">
+    <button class="publish" (click)="this.togglePublishing()">{{this.article.isPublished ? "Dépublier" : "Publier"}}</button>
+    <input type="text" [(ngModel)]="this.article.comment" placeholder="Ajouter un commentaire">
+  </div>
+
+  <p class="published-status">{{this.article.isPublished ? "Article publié" : "Article non publié"}}</p>
+
+  @if (this.article.comment) {
+    <p class="comment">Commentaire : {{this.article.comment}}</p>
+  }
 </div>
