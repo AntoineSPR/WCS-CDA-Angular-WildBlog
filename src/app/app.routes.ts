@@ -5,6 +5,6 @@ import { WorkshopsComponent } from './workshops/workshops.component';
 
 export const routes: Routes = [
     { path: '', component: HomePageComponent },
-    { path: 'articles', component: ArticlePageComponent },
+    { path: 'article/:id', component: ArticlePageComponent },
     { path: 'workshops', component: WorkshopsComponent },
 ];

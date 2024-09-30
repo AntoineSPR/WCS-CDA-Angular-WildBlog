@@ -7,6 +7,7 @@
             {{article.title}}
           </h3>
           <p>{{article.content}}</p>
+          <a [routerLink]="['/article', article.id]">Lire la suite</a>
         }
       } @empty {
         <p>Aucun article supplémentaire pour le moment...</p>
