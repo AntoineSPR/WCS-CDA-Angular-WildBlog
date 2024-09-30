@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { ArticleComponent } from '../article/article.component';
 import { RouterLink } from '@angular/router';
 
-interface Article {
+export interface Article {
   id: number,
   title: string,
   author: string,
