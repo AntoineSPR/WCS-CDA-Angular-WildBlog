@@ -1,1 +1,13 @@
-<p>home-page works!</p>
+<app-article></app-article>
+      <h2 [ngStyle]="{'text-align': 'center', 'color': 'orange'}">Autres articles</h2>
+      @for(article of articles; track $index) {
+        @if(article.isPublished){
+          <h3 [ngClass]="{'popular-article': article.likes > 100}"
+              [ngStyle]="article.likes > 150 ? {'color': 'green'} : {}">
+            {{article.title}}
+          </h3>
+          <p>{{article.content}}</p>
+        }
+      } @empty {
+        <p>Aucun article supplémentaire pour le moment...</p>
+      }
