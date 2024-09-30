@@ -1,0 +1,26 @@
+<h2>Produits</h2>
+
+@for (product of products; track product.id) {
+    <h3>{{product.name}}</h3>
+    <p>{{product.price}}€</p>
+    @if (product.discount) {
+        <p [ngClass]="{'green': product.discount_value > 20}">{{product.discount_value}}% de promo!</p>
+        <p>Valable jusqu'au {{product.date_end_discount | date: 'dd/MM/yyyy'}}</p>
+    }
+    <button (click)="buyProduct(product.id)">Acheter</button>
+} @empty {
+    <p>Pas de produits pour le moment</p>
+}
+
+<h2>Produits achetés</h2>
+
+@for (product of boughtProducts; track product.id) {
+    <h3>{{product.name}}€</h3>
+    <p>{{product.price}}</p>
+    @if (product.discount) {
+        <p [ngClass]="{'green': product.discount_value > 20}">{{product.discount_value}}% de promo!</p>
+        <p>Valable jusqu'au {{product.date_end_discount | date: 'dd/MM/yyyy'}}</p>
+    }
+} @empty {
+    <p>Pas de produits achetés pour le moment</p>
+}
