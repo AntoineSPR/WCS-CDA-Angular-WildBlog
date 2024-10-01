@@ -13,14 +13,11 @@ import { HomePageComponent, Article } from '../home-page/home-page.component';
 })
 export class ArticlePageComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
-  @Input() article!: Article | undefined;
-  @Input() homePageComponent!: HomePageComponent;
   articleId!: number;
 
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.articleId = Number(params.get('id'));
-      this.article = this.homePageComponent.articles.find(a => a.id === this.articleId);
     });
   }
 }
