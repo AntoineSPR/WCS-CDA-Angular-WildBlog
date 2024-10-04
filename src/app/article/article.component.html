@@ -1,20 +1,20 @@
 <div class="card">
   <div class="card-contents">
-    <h2>{{this.article.title}}</h2>
-    <p>{{this.article.content}}</p>
-    <p class="author">By {{this.article.author}}</p>
+    <h2>{{article.title}}</h2>
+    <p>{{article.content}}</p>
+    <p class="author">By {{article.author}}</p>
   </div>
 
-  <img [src]="this.article.image" alt={{this.article.imageAlt}}>
+  <img [src]="article.image" alt={{article.imageAlt}}>
 
   <div class="addendum">
-    <button class="publish" (click)="this.togglePublishing()">{{this.article.isPublished ? "Dépublier" : "Publier"}}</button>
-    <input type="text" [(ngModel)]="this.article.comment" placeholder="Ajouter un commentaire">
+    <button class="publish" (click)="togglePublishing()">{{article.isPublished ? "Dépublier" : "Publier"}}</button>
+    <input type="text" [(ngModel)]="article.comment" placeholder="Ajouter un commentaire">
   </div>
 
-  <p class="published-status">{{this.article.isPublished ? "Article publié" : "Article non publié"}}</p>
+  <p class="published-status">{{article.isPublished ? "Article publié" : "Article non publié"}}</p>
 
-  @if (this.article.comment) {
-    <p class="comment">Commentaire : {{this.article.comment}}</p>
+  @if (article.comment) {
+    <p class="comment">Commentaire : {{article.comment}}</p>
   }
 </div>
