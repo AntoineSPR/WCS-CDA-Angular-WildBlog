@@ -1,16 +1,54 @@
-<form (ngSubmit)="onSubmit()">
+<form #contactForm="ngForm" (ngSubmit)="contactForm.valid && onSubmit()">
     <h3>Formulaire de contact</h3>
     <fieldset>
         <label for="firstname">First name</label>
-        <input type="text" id="firstname" name="firstname" [(ngModel)]="contactInfo.firstname" minlength="2" maxlength="15" required>
+        <input type="text" id="firstname" name="firstname" [(ngModel)]="contactInfo.firstname" #firstname="ngModel" minlength="2" maxlength="15" required>
+        @if (contactForm.submitted && firstname.errors) {
+            <div> 
+                @if (firstname.errors['required']) {
+                    <span>Le nom est requis</span>
+                }
+                @if (firstname.errors['minlength']) {
+                    <span>Le nom doit comporter au moins 2 caractères</span>
+                }
+                @if (firstname.errors['maxlength']) {
+                    <span>Le nom ne doit pas dépasser 15 caractères</span>
+                }
+            </div>
+        }
     </fieldset>
     <fieldset>
         <label for="lastname">Last name</label>
-        <input type="text" id="lastname" name="lastname" [(ngModel)]="contactInfo.lastname" minlength="2" maxlength="15" required>
+        <input type="text" id="lastname" name="lastname" [(ngModel)]="contactInfo.lastname" #lastname="ngModel" minlength="2" maxlength="15" required>
+        @if (contactForm.submitted && lastname.errors) {
+            <div> 
+                @if (lastname.errors['required']) {
+                    <span>Le nom est requis</span>
+                }
+                @if (lastname.errors['minlength']) {
+                    <span>Le nom doit comporter au moins 2 caractères</span>
+                }
+                @if (lastname.errors['maxlength']) {
+                    <span>Le nom ne doit pas dépasser 15 caractères</span>
+                }
+            </div>
+        }
     </fieldset>
     <fieldset>
         <label for="email">E-mail</label>
-        <input type="email" id="email" name="email" [(ngModel)]="contactInfo.email" required>
+        <input type="email" id="email" name="email" [(ngModel)]="contactInfo.email" #email="ngModel" 
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+        <!-- Le formulaire m'a vraiment soûlé à ne pas vérifier le format de l'email, alors régalez-vous de ce beau Regex -->
+        @if (contactForm.submitted && email.errors) {
+            <div> 
+                @if (email.errors['required']) {
+                    <span>L'adresse e-mail est requise</span>
+                }
+                @if (email.errors['pattern']) {
+                    <span>L'email est invalide</span>
+                }
+            </div>
+        }
     </fieldset>
     <input type="submit">
 </form>

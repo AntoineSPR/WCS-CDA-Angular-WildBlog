@@ -13,16 +13,21 @@ export class ContactFormComponent {
 
   contactInfo: ContactInfo = {
     firstname: "",
-    lastname: "", 
+    lastname: "",
     email: ""
   }
 
+  getEmailErrors(email: any): Array<[string, any]> {
+    const errors = email.errors;
+    return errors ? Object.entries(errors) : [];
+  }
+
   onSubmit(): void {
-    console.log("Formulaire envoyé, mon vieux.");
-    Object.entries(this.contactInfo).forEach(
-      ([key, value]) => {
-        console.log(`${key} : ${value}`);
-      }
-    )
+      console.log("Formulaire envoyé, mon vieux.");
+      Object.entries(this.contactInfo).forEach(
+        ([key, value]) => {
+          console.log(`${key} : ${value}`);
+        }
+      );
   }
 }
