@@ -1,0 +1,29 @@
+h3 {
+    text-align: center;
+    text-decoration: underline;
+    font-size: 2rem;
+    margin: 0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+    padding: 20px;
+    
+    fieldset {
+        width: 50%;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        border: none;
+    }
+
+    input[type="submit"] {
+        width: fit-content;
+        margin: auto;
+    }
+}
