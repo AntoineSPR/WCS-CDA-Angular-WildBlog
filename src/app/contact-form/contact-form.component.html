@@ -1,16 +1,16 @@
-<form>
+<form (ngSubmit)="onSubmit()">
     <h3>Formulaire de contact</h3>
     <fieldset>
         <label for="firstname">First name</label>
-        <input type="text" id="firstname" name="firstname" minlength="2" maxlength="15" required>
+        <input type="text" id="firstname" name="firstname" [(ngModel)]="contactInfo.firstname" minlength="2" maxlength="15" required>
     </fieldset>
     <fieldset>
         <label for="lastname">Last name</label>
-        <input type="text" id="lastname" name="lastname" minlength="2" maxlength="15" required>
+        <input type="text" id="lastname" name="lastname" [(ngModel)]="contactInfo.lastname" minlength="2" maxlength="15" required>
     </fieldset>
     <fieldset>
         <label for="email">E-mail</label>
-        <input type="email" required>
+        <input type="email" id="email" name="email" [(ngModel)]="contactInfo.email" required>
     </fieldset>
     <input type="submit">
 </form>
