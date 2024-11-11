@@ -1,30 +1,44 @@
-<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" >
-    <h3>Formulaire d'inscription</h3>
-    <fieldset>
-        <label for="username">Nom d'utilisateur</label>
-        <input id="username" formControlName="username">
-        @if (signUpForm.get('username')?.invalid && signUpForm.get('username')?.touched) {
-            <div>
-              @if (signUpForm.get('username')?.errors?.['required']) {
-                <span>Le nom d'utilisateur est requis.</span>
-              }
-              @if (signUpForm.get('username')?.errors?.['minlength']) {
-                <span>Le nom doit comporter au moins 3 caractères.</span>
-              }
-            </div>
-          }
-    </fieldset>
-    <fieldset>
-        <label for="email">E-mail</label>
-        <input id="email" formControlName="email">
-    </fieldset>
-    <!-- <fieldset>
-        <label for="password">Mot de passe</label>
-        <input type="text" id="password" name="password" minlength="2" maxlength="15" required>
-    </fieldset>
-    <fieldset>
-        <label for="confirm-password">Confirmer mot de passe</label>
-        <input type="text" id="confirm-password" name="confirm-password" minlength="2" maxlength="15" required>
-    </fieldset> -->
-    <button type="submit" [disabled]="signUpForm.invalid">S'inscrire</button>
+<form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="username">Nom d'utilisateur</label>
+    <input type="text" id="username" formControlName="username">
+  </div>
+  <div>
+    <label for="email">E-mail</label>
+    <input type="email" id="email" formControlName="email">
+  </div>
+  <div formGroupName="passwords">
+    <label for="password">Mot de passe</label>
+    <input type="password" id="password" formControlName="password">
+
+    <label for="confirmPassword">Confirmer le mot de passe</label>
+    <input type="password" id="confirmPassword" formControlName="confirmPassword">
+  </div>
+  <button type="submit" [disabled]="signupForm.invalid">S'inscrire</button>
 </form>
+
+@if (signupForm.get('username')?.invalid && signupForm.get('username')?.touched) {
+<div>
+  @if (signupForm.get('username')?.errors?.['required']) {
+  <span>Le nom d'utilisateur est requis, putain.</span>
+  }
+  @if (signupForm.get('username')?.errors?.['minlength']) {
+  <span>Le nom d'utilisateur est trop court, en fait.</span>
+  }
+</div>
+}
+
+@if (signupForm.get('password')?.invalid && signupForm.get('password')?.touched) {
+<div>
+  @if (signupForm.get('password')?.errors?.['required']) {
+  <span>Le mot de passe est requis, duh.</span>
+  }
+  @if (signupForm.get('password')?.errors?.['securePassword']) {
+  <span>Le mot de passe doit contenir au moins 12 caractères, avec une majuscule, une minuscule, un chiffre, un caractère spécial, ton numéro de carte bancaire, l'adresse de ta mère, ton RIB et ton numéro de carte bleue.</span>
+  }
+</div>
+}
+
+@if (signupForm.get('passwords')?.errors?.['passwordsMismatch'] && signupForm.get('passwords')?.touched) {
+  <span>Va falloir te décider pour le mot de passe</span>
+}
