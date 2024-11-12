@@ -5,10 +5,11 @@
     <p class="author">By {{article.author}}</p>
   </div>
 
-  <img [src]="article.image" alt={{article.imageAlt}}>
+    <img [src]="article.image" alt={{article.imageAlt}}>
 
   <div class="addendum">
     <button class="publish" (click)="togglePublishing()">{{article.isPublished ? "Dépublier" : "Publier"}}</button>
+    <button (click)="likeArticle()">S'enjailler</button>
     <input type="text" [(ngModel)]="article.comment" placeholder="Ajouter un commentaire">
   </div>
 

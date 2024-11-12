@@ -1,6 +1,9 @@
 <app-article [article]="jakeArticle"></app-article>
       <h2 [ngStyle]="{'text-align': 'center', 'color': 'orange'}">Autres articles</h2>
       @for(article of articles; track $index) {
-          <app-article [article]="article"></app-article>
+          <app-article [article]="article" (like)="displayLike($event)"></app-article>
+          @if (likedMessage.length > 0) {
+            <p [ngStyle]="{'color': 'purple'}">{{likedMessage}}</p>
+          }
       }
 

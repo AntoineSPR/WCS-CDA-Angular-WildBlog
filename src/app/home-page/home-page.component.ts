@@ -23,6 +23,12 @@ export interface Article {
   styleUrl: './home-page.component.scss'
 })
 export class HomePageComponent {
+  likedMessage: string = "";
+
+  displayLike(message: string) {
+    this.likedMessage = message;
+  } 
+
   jakeArticle: Article = {
     title: 'Adventure Time',
     author: 'Finn', 
