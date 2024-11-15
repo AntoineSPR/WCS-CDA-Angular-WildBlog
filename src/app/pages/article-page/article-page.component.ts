@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs';
-import { HomePageComponent } from '../home-page/home-page.component';
-import { Article } from '../../home-page/home-page.component';
+import { Article } from '../models/article.model';
 import { CommonModule } from '@angular/common';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-article-page',
@@ -15,8 +15,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ArticlePageComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
-  _http: HttpClient = inject(HttpClient);
-  url: string = "http://localhost:3000/articles";
+  apiService: ApiService = inject(ApiService);
 
   articleId!: number;
   article!: Observable<Article>;
@@ -25,12 +24,7 @@ export class ArticlePageComponent {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.articleId = Number(params.get('id'));
     });
-    this.getArticleById(this.articleId);
-  }
-
-  getArticleById(id: number): void {
-    this.article = this._http.get<Article>(this.url + "/" + id);
-    console.log(this.article);
+    this.article = this.apiService.getArticleById(this.articleId);
   }
 }
 

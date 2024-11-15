@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { ArticleThumbnailComponent } from '../article-thumbnail/article-thumbnail.component';
 import { ApiService } from '../../services/api.service';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-article-list',
@@ -15,15 +14,10 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ArticleListComponent implements OnInit {
   articles!: Observable<Article[]>
-  _http: HttpClient = inject(HttpClient);
-  url: string = "http://localhost:3000/articles";
+  apiService: ApiService = inject(ApiService);
 
   ngOnInit() {
-    this.getArticles();
-  }
-  
-  getArticles(): void {
-    this.articles = this._http.get<Article[]>(this.url);
+    this.articles = this.apiService.getArticles();
   }
 
   handleLike(article: Article) {
