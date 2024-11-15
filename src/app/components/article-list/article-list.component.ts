@@ -15,15 +15,15 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ArticleListComponent implements OnInit {
   articles!: Observable<Article[]>
-  _http = inject(HttpClient);
-  url = "http://localhost:3000/articles";
-  
-  getArticles(): void {
-    this.articles = this._http.get<Article[]>(this.url);
-  }
+  _http: HttpClient = inject(HttpClient);
+  url: string = "http://localhost:3000/articles";
 
   ngOnInit() {
     this.getArticles();
+  }
+  
+  getArticles(): void {
+    this.articles = this._http.get<Article[]>(this.url);
   }
 
   handleLike(article: Article) {
